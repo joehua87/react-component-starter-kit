@@ -12,9 +12,10 @@
     "build": "npm run clean && npm run build:js && npm run build:css",
     "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production babel --out-dir='lib' --ignore='stories/*,__test__/*' src",
     "build:css": "cpx 'lib-css/*.css' lib && rimraf lib-css",
+    "generate": "plop --plopfile generators/index.js",
     "prepublish": "npm run build",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint ./src",
+    "lint:js": "eslint ./src ./generators",
     "lint:css": "stylelint ./src/**/*.css",
     "lint:staged": "lint-staged",
     "flow": "npm run lint && flow",
@@ -55,7 +56,9 @@
   "pre-commit": "lint:staged",
   "author": "joehua",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "^2.14.1"
+  },
   "devDependencies": {
     "@kadira/storybook": "^2.6.1",
     "autoprefixer": "^6.4.0",
@@ -95,6 +98,7 @@
     "lint-staged": "^2.0.3",
     "mocha": "^3.0.2",
     "nyc": "^8.1.0",
+    "plop": "^1.5.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-focus": "^1.0.0",
     "postcss-loader": "^0.11.1",
