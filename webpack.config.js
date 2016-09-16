@@ -34,7 +34,7 @@ module.exports = {
     }),
   ],
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('styles__[contenthash].css'),
   ],
   resolve: {
     modules: [
