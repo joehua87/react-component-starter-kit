@@ -1,11 +1,16 @@
-/* eslint-disable no-var */
+/* eslint-disable no-var, global-require */
 var path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-// PostCSS plugins
-const cssnext = require('postcss-cssnext')
-const postcssFocus = require('postcss-focus')
-const postcssReporter = require('postcss-reporter')
+const postCSSConfig = () => [
+  require('postcss-import')({
+    path: path.join(__dirname, 'src', 'theme'),
+  }),
+  require('postcss-cssnext')({
+    browsers: ['> 1%', 'last 2 versions'],
+  }),
+  require('postcss-reporter')({ clearMessages: true }),
+]
 
 module.exports = {
   output: {
@@ -24,15 +29,7 @@ module.exports = {
       },
     ],
   },
-  postcss: [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    postcssReporter({
-      clearMessages: true,
-    }),
-  ],
+  postcss: postCSSConfig,
   plugins: [
     new ExtractTextPlugin('styles__[contenthash].css'),
   ],

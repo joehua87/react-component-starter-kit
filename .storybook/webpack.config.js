@@ -1,9 +1,15 @@
 const path = require('path')
 
-// PostCSS plugins
-const cssnext = require('postcss-cssnext')
-const postcssFocus = require('postcss-focus')
-const postcssReporter = require('postcss-reporter')
+const postCSSConfig = (webpack) => [
+  require('postcss-import')({
+    path: path.join(__dirname, '..', 'src', 'theme'),
+    addDependencyTo: webpack // for hot-reloading
+  }),
+  require('postcss-cssnext')({
+    browsers: ['> 1%', 'last 2 versions'],
+  }),
+  require('postcss-reporter')({ clearMessages: true }),
+]
 
 module.exports = {
   module: {
@@ -43,13 +49,5 @@ module.exports = {
       '.react.js',
     ],
   },
-  postcss: [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    postcssReporter({
-      clearMessages: true,
-    }),
-  ],
+  postcss: postCSSConfig,
 }
