@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "npm run clean && npm run build:js && npm run build:css",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production babel --out-dir='lib' --ignore='stories/*,__test__/*' src",
+    "build:js": "cross-env WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production babel --out-dir='lib' --ignore='stories/*,__test__/*' src",
     "build:css": "node scripts/concat-styles.js && cpx 'lib-css/styles.css' lib && rimraf lib-css",
     "generate": "plop --plopfile generators/index.js",
     "prepublish": "npm run build",
@@ -19,13 +19,13 @@
     "lint:css": "stylelint ./src/**/*.css",
     "lint:staged": "lint-staged",
     "flow": "npm run lint && flow",
-    "storybook": "NODE_ENV=development start-storybook -p 9001",
-    "build-storybook": "NODE_ENV=storybook build-storybook -c .storybook -o build",
+    "storybook": "cross-env NODE_ENV=development start-storybook -p 9001",
+    "build-storybook": "cross-env NODE_ENV=storybook build-storybook -c .storybook -o build",
     "gh-pages": "npm run build-storybook && node gh-pages.js",
-    "test:file": "NODE_ENV=test NODE_PATH=./src mocha --require babel-register --require testHelper.js",
+    "test:file": "cross-env NODE_ENV=test NODE_PATH=./src mocha --require babel-register --require testHelper.js",
     "test": "nyc -r text -r lcov npm run test:js",
-    "test:js": "NODE_ENV=test NODE_PATH=./src mocha --require babel-register --require testHelper.js 'src/**/__test__/*.test.js'",
-    "test:watch": "NODE_ENV=test NODE_PATH=./src mocha --watch --require babel-register --require testHelper.js 'src/**/__test__/*.test.js'"
+    "test:js": "cross-env NODE_ENV=test NODE_PATH=./src mocha --require babel-register --require testHelper.js 'src/**/__test__/*.test.js'",
+    "test:watch": "cross-env NODE_ENV=test NODE_PATH=./src mocha --watch --require babel-register --require testHelper.js 'src/**/__test__/*.test.js'"
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
