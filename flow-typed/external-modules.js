@@ -17,3 +17,11 @@ declare module 'sinon' {
 declare module '@kadira/storybook' {
   declare var exports: any;
 }
+
+declare module '@kadira/storybook-addon-notes' {
+  declare var exports: any;
+}
+
+declare module '@kadira/react-storybook-addon-info' {
+  declare var exports: any;
+}

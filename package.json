@@ -60,7 +60,9 @@
     "moment": "^2.14.1"
   },
   "devDependencies": {
+    "@kadira/react-storybook-addon-info": "^3.2.1",
     "@kadira/storybook": "^2.6.1",
+    "@kadira/storybook-addon-notes": "^1.0.1",
     "autoprefixer": "^6.4.0",
     "babel-cli": "^6.10.1",
     "babel-eslint": "^6.1.2",
