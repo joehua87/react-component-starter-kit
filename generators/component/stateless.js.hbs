@@ -1,21 +1,29 @@
 // @flow
 
 import React from 'react'
-
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
-{{/if}}
 
+{{/if}}
 {{#if wantCSS}}
 import { themr } from 'react-css-themr'
 import makeCn, { getThemingOption } from 'utils/makeCn'
+{{/if}}
+{{#if specificCSS}}
 import styles from './styles.css'
 
 const cn = makeCn({ _: styles })
 
 const defaultStyles = {
   root: cn('_root'),
+}
+{{else}}
+
+const cn = makeCn()
+
+const defaultStyles = {
+  root: cn(''),
 }
 {{/if}}
 

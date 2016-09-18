@@ -33,6 +33,12 @@ module.exports = {
       default: true,
       message: 'Does it have styling?',
     },
+    {
+      type: 'confirm',
+      name: 'specificCSS',
+      default: false,
+      message: 'Does it have specific styling?',
+    },
     /*
     {
       type: 'confirm',
@@ -78,7 +84,7 @@ module.exports = {
     ]
 
     // If they want a CSS file, add styles.css
-    if (data.wantCSS) {
+    if (data.specificCSS) {
       actions.push({
         type: 'add',
         path: '../src/components/{{properCase name}}/styles.css',
