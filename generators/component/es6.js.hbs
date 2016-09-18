@@ -23,10 +23,6 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
     theme: { [key: string]: string },
   };
 
-  static defaultProps = {
-    theme: {},
-  };
-
   {{/if}}
   render() {
     {{#if wantCSS}}

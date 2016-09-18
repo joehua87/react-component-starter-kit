@@ -40,12 +40,6 @@ export function {{ properCase name }}({ theme }: {
 {{ properCase name }}.displayName = '{{ properCase name }}'
 
 {{#if wantCSS}}
-{{ properCase name }}.defaultProps = {
-  theme: {},
-}
-
-{{/if}}
-{{#if wantCSS}}
 export default themr('{{ properCase name }}', defaultStyles, getThemingOption())({{ properCase name }})
 {{else}}
 export default {{ properCase name }}
