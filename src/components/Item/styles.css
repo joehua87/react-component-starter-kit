@@ -1,7 +1,4 @@
-@import 'variables';
-
 .root {
-  color: var(--primary-color);
   cursor: pointer;
 }
 

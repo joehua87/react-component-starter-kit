@@ -8,13 +8,25 @@ import messages from './messages'
 {{/if}}
 
 {{#if wantCSS}}
+import { themr } from 'react-css-themr'
+import makeCn, { getThemingOption } from 'utils/makeCn'
 import styles from './styles.css'
+
+const cn = makeCn({ _: styles })
+
+const defaultStyles = {
+  root: cn('_root'),
+}
 {{/if}}
 
-function {{ properCase name }}() {
+export function {{ properCase name }}({ theme }: {
+{{#if wantCSS}}
+  theme: { [key: string]: string },
+{{/if}}
+}) {
   return (
     {{#if wantCSS}}
-    <div className={{curly true}}styles.{{ camelCase name }}{{curly}}>
+    <div className={{curly true}}theme.root{{curly}}>
     {{else}}
     <div>
     {{/if}}
@@ -25,4 +37,16 @@ function {{ properCase name }}() {
   )
 }
 
+{{ properCase name }}.displayName = '{{ properCase name }}'
+
+{{#if wantCSS}}
+{{ properCase name }}.defaultProps = {
+  theme: {},
+}
+
+{{/if}}
+{{#if wantCSS}}
+export default themr('{{ properCase name }}', defaultStyles, getThemingOption())({{ properCase name }})
+{{else}}
 export default {{ properCase name }}
+{{/if}}

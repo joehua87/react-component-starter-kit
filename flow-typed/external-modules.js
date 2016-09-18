@@ -14,6 +14,10 @@ declare module 'sinon' {
   declare var exports: any;
 }
 
+declare module 'react-css-themr' {
+  declare var exports: any;
+}
+
 declare module '@kadira/storybook' {
   declare var exports: any;
 }

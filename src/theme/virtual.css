@@ -1,0 +1,15 @@
+/*
+ * Define functional class to use variables
+ */
+
+:root {
+  --primary-color: #E87E04;
+}
+
+.pc {
+  color: var(--primary-color);
+}
+
+.bg-pc {
+  background-color: var(--primary-color);
+}
