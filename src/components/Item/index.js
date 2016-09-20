@@ -12,7 +12,7 @@ const cn = makeCn({ _: styles })
  * _root from styles.css to set cursor & hover
  * dib ba b--gray from tachyons.css to set display: inline-block & border
  */
-const defaultStyles = {
+export const defaultStyles = {
   root: cn('_root -pc dib ba b--gray'),
 }
 

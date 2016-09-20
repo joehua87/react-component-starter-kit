@@ -1,23 +1,17 @@
-// @flow
-
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import Item from '../index'
+import Item, { defaultStyles } from '../index'
 import styles from '../styles.css'
 
 describe('Item', () => {
-  it('Render using shallow', () => {
-    const renderedComponent = shallow(<Item icon="star" tooltip="Click to start" />)
-    expect(renderedComponent).to.have.prop('className', styles.root)
-    expect(renderedComponent).to.have.prop('title', 'Click to start')
-  })
-
-  it('Render using mount', () => {
-    const renderedComponent = mount(<Item icon="star" tooltip="Click to start" />)
-    expect(renderedComponent).to.have.attr('class', styles.root)
-    expect(renderedComponent).to.have.attr('title', 'Click to start')
+  it('Render', () => {
+    const wrappedComponent = mount(<Item icon="star" tooltip="Click to start" />)
+    const rootComponent = wrappedComponent.find(`.${styles.root}`)
+    const rootClassName = rootComponent.prop('className')
+    expect(rootClassName).to.includes(styles.root)
+    expect(rootClassName).to.includes(defaultStyles.root)
   })
 
   it('Click', () => {
