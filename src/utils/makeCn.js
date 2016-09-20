@@ -13,12 +13,14 @@ const prefixKeys = (obj, prefix = '-') => {
 // One virtual class can reference another virtual class
 let virtualToFunctional = prefixKeys(styles)
 
+/*
 type ThemingOption = {
   composeTheme: 'deeply' | 'softly' | false,
   withRef?: boolean,
 }
+*/
 
-let _options: ThemingOption = {
+let _options = {
   composeTheme: false,
 }
 
