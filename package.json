@@ -19,6 +19,7 @@
     "lint:css": "stylelint ./src/**/*.css",
     "lint:staged": "lint-staged",
     "flow": "npm run lint && flow",
+    "example": "cross-env NODE_ENV=development node ./example/server.js",
     "storybook": "cross-env NODE_ENV=development start-storybook -p 9001",
     "build-storybook": "cross-env NODE_ENV=storybook build-storybook -c .storybook -o build",
     "gh-pages": "npm run build-storybook && node gh-pages.js",
