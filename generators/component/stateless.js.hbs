@@ -8,7 +8,7 @@ import messages from './messages'
 {{/if}}
 {{#if wantCSS}}
 import { themr } from 'react-css-themr'
-import makeCn, { getThemingOption } from 'utils/makeCn'
+import makeCn from 'utils/makeCn'
 {{/if}}
 {{#if specificCSS}}
 import styles from './styles.css'
@@ -48,7 +48,7 @@ export function {{ properCase name }}({ theme }: {
 {{ properCase name }}.displayName = '{{ properCase name }}'
 
 {{#if wantCSS}}
-export default themr('{{ properCase name }}', defaultStyles, getThemingOption())({{ properCase name }})
+export default themr('{{ properCase name }}', defaultStyles)({{ properCase name }})
 {{else}}
 export default {{ properCase name }}
 {{/if}}

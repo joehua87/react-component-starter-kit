@@ -8,7 +8,7 @@ import messages from './messages'
 {{/if}}
 {{#if wantCSS}}
 import { themr } from 'react-css-themr'
-import makeCn, { getThemingOption } from 'utils/makeCn'
+import makeCn from 'utils/makeCn'
 {{/if}}
 {{#if specificCSS}}
 import styles from './styles.css'
@@ -53,7 +53,7 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
 }
 
 {{#if wantCSS}}
-export default themr('{{ properCase name }}', defaultStyles, getThemingOption())({{ properCase name }})
+export default themr('{{ properCase name }}', defaultStyles)({{ properCase name }})
 {{else}}
 export default {{ properCase name }}
 {{/if}}
