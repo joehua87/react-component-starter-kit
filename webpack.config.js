@@ -2,16 +2,6 @@
 var path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const postCSSConfig = () => [
-  require('postcss-import')({
-    path: path.join(__dirname, 'src', 'theme'),
-  }),
-  require('postcss-cssnext')({
-    browsers: ['> 1%', 'last 2 versions'],
-  }),
-  require('postcss-reporter')({ clearMessages: true }),
-]
-
 module.exports = {
   output: {
     publicPath: '/',
@@ -29,18 +19,15 @@ module.exports = {
       },
     ],
   },
-  postcss: postCSSConfig,
   plugins: [
     new ExtractTextPlugin('styles__[contenthash].css'),
   ],
   resolve: {
     modules: [
       path.resolve(__dirname, 'src'),
-      // path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, 'node_modules'),
     ],
-    modulesDirectories: ['src', 'node_modules'],
     extensions: [
-      '',
       '.js',
       '.jsx',
       '.json',

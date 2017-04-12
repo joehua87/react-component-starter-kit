@@ -28,7 +28,7 @@ storiesOf('Item', module)
         <Item icon="star" tooltip="Hello" onClick={action('Click')} />
         <br />
         <p>
-          Click the "?" mark at top-right to view the info.
+          {'Click the "?" mark at top-right to view the info.'}
         </p>
       </div>
     ),

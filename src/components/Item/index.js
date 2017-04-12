@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react'
-import styles from './styles.css'
 import { themr } from 'react-css-themr'
-import makeCn, { getThemingOption } from 'utils/makeCn'
+import makeCn from 'utils/makeCn'
+import styles from './styles.css'
 
 const cn = makeCn({ _: styles })
 
@@ -17,25 +17,18 @@ export const defaultStyles = {
 }
 
 export class Item extends React.Component { // eslint-disable-line
-  /*
   props: {
     icon: string,
     tooltip?: string,
     onClick?: () => void,
     theme: { [key: string]: string },
   };
-  */
 
-  /*
-  Use this for showing info in storybook.
-  Currently @kadira/react-storybook-addon-info is not support flow type
-  */
-  static propTypes = {
-    icon: React.PropTypes.string.isRequired,
-    tooltip: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    theme: React.PropTypes.object,
-  };
+  static defaultProps = {
+    tooltip: '',
+    onClick: null,
+    theme: null,
+  }
 
   render() {
     const { icon, tooltip, onClick, theme } = this.props
@@ -47,4 +40,4 @@ export class Item extends React.Component { // eslint-disable-line
   }
 }
 
-export default themr('Item', defaultStyles, getThemingOption())(Item)
+export default themr('Item', defaultStyles)(Item)

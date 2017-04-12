@@ -3,6 +3,7 @@
 .*/node_modules/editions/.*
 .*/node_modules/fbjs/.*
 .*/node_modules/immutable/.*
+.*/node_modules/stylelint/.*
 .*/node_modules/redux-immutable-crud/.*
 .*/node_modules/.*.json
 
