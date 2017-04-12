@@ -1,37 +1,22 @@
+// @flow
+
 import _classnames from 'classnames'
 import styles from 'theme/virtual.css'
 
 const prefixKeys = (obj, prefix = '-') => {
   const keys = Object.keys(obj)
   const result = {}
-  keys.forEach((key) => (result[`${prefix}${key}`] = obj[key]))
+  keys.forEach(key => (result[`${prefix}${key}`] = obj[key]))
   return result
 }
 
 // Add virtual class name here
 // Virtual classes should be prefixed with a hyphen
 // One virtual class can reference another virtual class
-let virtualToFunctional = prefixKeys(styles)
-
-/*
-type ThemingOption = {
-  composeTheme: 'deeply' | 'softly' | false,
-  withRef?: boolean,
-}
-*/
-
-let _options = {
-  composeTheme: false,
-}
-
-export const setThemingOption = (options) => {
-  _options = options
-}
-
-export const getThemingOption = () => _options
+const virtualToFunctional = prefixKeys(styles)
 
 // Convert virtual class names to functional class names
-const convertVirtualClassnames = (classNames) => classNames.split(' ').map((className) => (
+const convertVirtualClassnames = classNames => classNames.split(' ').map(className => (
   // Recursively convert.
   // Also return both functional and virtual classes
   virtualToFunctional[className]
@@ -40,7 +25,7 @@ const convertVirtualClassnames = (classNames) => classNames.split(' ').map((clas
 )).join(' ')
 
 // Convert prefixed CSS-Module class names to CSS-Module class names
-const convertCssModuleClassnames = (prefixToCssmodules) => (classNames) => (
+const convertCssModuleClassnames = prefixToCssmodules => classNames => (
   // Only proceed if prefixToCssmodules is not empty/undefined.
   // Otherwise, just return classNames (else case)
   prefixToCssmodules
@@ -67,17 +52,10 @@ const convertCssModuleClassnames = (prefixToCssmodules) => (classNames) => (
 )
 
 // Wrap classnames function with convertVirtualClassnames and convertCssModuleClassnames
-const makeCn = (prefixToCssmodules) => (...args) => (
+const makeCn = (prefixToCssmodules: any) => (...args: any) => (
   // First run classnames, then run convertVirtualClassnames,
   // then pass the result to convertCssModuleClassnames
   convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(_classnames(...args)))
 )
-
-/*
- * Use this to set virtualStyles from project that use this library
- */
-export function setVirtualStyles(virtualStyles) {
-  virtualToFunctional = virtualStyles
-}
 
 export default makeCn
